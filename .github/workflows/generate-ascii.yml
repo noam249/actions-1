@@ -11,15 +11,20 @@ jobs:
         - name: Execute Cowsay
           run: cowsay "Mooo" >> cow.txt
 
-        - name: Sleep for 30 seconds
-          run: sleep 30
+        - name: Upload Cow file
+          uses: actions/upload-artifact@v7
+          with:
+            name: cow-file
+            path: cow.txt
     
     test_job_2:
       needs: build_job_1
       runs-on: ubuntu-latest
       steps:
-      - name: Sleep for 10 seconds
-        run: sleep 10
+     - name: Upload Cow file
+       uses: actions/download-artifact@v7
+       with:
+         name: cow-file
 
       - name: Test File Exists
         run: grep -i "mooo" cow.txt
@@ -28,6 +33,11 @@ jobs:
       needs: test_job_2
       runs-on: ubuntu-latest
       steps:
+     - name: Upload Cow file
+       uses: actions/download-artifact@v7
+       with:
+         name: cow-file
+
       - name: Read File
         run: cat cow.txt
 
