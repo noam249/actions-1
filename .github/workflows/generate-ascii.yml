@@ -1,5 +1,4 @@
 name: Generate ASCII
-
 on: push
 
 jobs:
