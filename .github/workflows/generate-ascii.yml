@@ -7,20 +7,13 @@ jobs:
       steps:
         - name: Checkout Repo
           uses: actions/checkout@v7
-
-        - name: Install cowsay
-          run: sudo apt install cowsay -y
-
-        - name: Execuse Cowsay
-          run: cowsay "Mooo" >> cow.txt
-
-        - name: Test File Exists
-          run: grep -i "mooo" cow.txt
-
-        - name: Read File
-          run: cat cow.txt
-
+          
         - name: List files
           run: ls -ltra
+
+        - name: Execute Shell Script
+          run: ./ascii-script.sh
+
+
 
 
